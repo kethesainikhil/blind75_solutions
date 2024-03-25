@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+    //create a newnode of -1 so that we can refernce this as a prehead and attach to this new list 
+    // first update the current.next value and then point the current value to the current.next
+        ListNode preHead = new ListNode(-1);
+        ListNode current = preHead;
+        while(list1 != null && list2 != null){
+        //check the value
+            if(list1.val <= list2.val){
+                current.next = list1;
+                current = current.next;
+                list1 = list1.next;
+            }
+            else{
+                current.next = list2;
+                current = current.next;
+                list2 = list2.next;
+            }
+
+        }   
+        //finally any list that left with nonull points so we can point current.next to that list so unleft elements wont be wasted
+        
+        current.next = list1 == null ? list2:list1;
+        // return next element because prehead is -1 so return next
+        return preHead.next;     
+    }
+}
