@@ -1,0 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+      //here whenever it reaches last node we will return
+        if(head == null || head.next == null){
+            return head;
+        }
+      // now while returning we will have the node and the next node so that we need to break the chain lets say example [1,2,3,4,5] ---> at this stage while returning 4 and 5 will be there so first reverse it 5 4 and make 4 point w
+        // towards null and repeat this step...
+        ListNode temp = head.next;
+        ListNode last = reverseList(head.next);
+        temp.next = head;
+        head.next = null;
+      finallly we return only head
+
+        return last;
+        
+    }
+}
